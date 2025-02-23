@@ -14,13 +14,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let builder = CryptoTableViewControllerBuilderImpl()
+        let builder = CryptoTableBuilderImpl()
         let vc = builder.build()
         let navigationController = UINavigationController(rootViewController: vc)
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white // Устанавливаем нужный цвет
+        appearance.backgroundColor = .white
         navigationController.navigationBar.standardAppearance = appearance
         navigationController.navigationBar.scrollEdgeAppearance = appearance
 
@@ -28,18 +28,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
-    }
-}
-
-protocol CryptoTableViewControllerBuildableProlocol {
-    func build() -> UIViewController
-}
-
-final class CryptoTableViewControllerBuilderImpl: CryptoTableViewControllerBuildableProlocol {
-    func build() -> UIViewController {
-        let viewModel = CryptoTableViewModelImpl()
-        let vc = CryptoTableViewController()
-        vc.viewModel = viewModel
-        return vc
     }
 }

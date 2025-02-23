@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum CryptoTableScreenState {
-    case isLoading
-    case dataLoaded([CryptoAsset])
-    case loadingError(CryptoTableError)
-}
-
 protocol CryptoTableViewModelProtocol {
     func setUpdateHandler(_ handler: @escaping (CryptoTableScreenState) -> Void)
     func loadData()
